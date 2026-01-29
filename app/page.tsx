@@ -5,7 +5,6 @@ const PRODUCTS = [
   {
     name: "Casque Audio Premium",
     description: "Son cristallin, réduction de bruit active et autonomie de 30h.",
-    price: 149.99,
     category: "Audio",
     emoji: "🎧",
     color: "from-violet-400 to-purple-500",
@@ -13,7 +12,6 @@ const PRODUCTS = [
   {
     name: "Montre Connectée",
     description: "Suivi santé, notifications et design minimaliste en acier.",
-    price: 249.0,
     category: "Accessoires",
     emoji: "⌚",
     color: "from-amber-400 to-orange-500",
@@ -21,7 +19,6 @@ const PRODUCTS = [
   {
     name: "Enceinte Portable",
     description: "Basses profondes, étanche IPX7 et autonomie de 20h.",
-    price: 89.99,
     category: "Audio",
     emoji: "🔊",
     color: "from-emerald-400 to-teal-500",
