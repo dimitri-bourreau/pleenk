@@ -1,17 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-interface PleenkWebhook {
-  type: string;
-  transactionRef: string;
-  paymentId: string;
-  metadata: string;
-  status: string;
-}
-
 export async function POST(request: NextRequest) {
-  const body: PleenkWebhook = await request.json();
-
-  console.log("[Pleenk Webhook]", body.status, body.transactionRef);
-
+  const raw = await request.text();
+  console.log("[Pleenk Webhook] Raw body:", raw);
   return NextResponse.json({ received: true });
 }
