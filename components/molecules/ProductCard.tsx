@@ -19,6 +19,7 @@ interface ProductCardProps {
 
 async function handleBuy() {
   const res = await fetch("/api/payment", { method: "POST" });
+  if (!res.ok) throw new Error("Payment request failed");
   const { url } = await res.json();
   window.location.href = url;
 }
@@ -28,7 +29,12 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const onClick = async () => {
     setLoading(true);
-    await handleBuy();
+    try {
+      await handleBuy();
+    } catch {
+      setLoading(false);
+      alert("Erreur lors du paiement. Veuillez réessayer.");
+    }
   };
 
   return (
