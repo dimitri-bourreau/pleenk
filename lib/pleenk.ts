@@ -7,6 +7,7 @@ interface PaymentParams {
   pw_beneficiary_0: string;
   pw_callback: string;
   pw_error_callback: string;
+  pw_notification: string;
 }
 
 function signParams(params: PaymentParams, privateKey: string): string {
@@ -33,6 +34,7 @@ export function buildPaymentUrl(): string {
     pw_beneficiary_0: `${walletId}|42`,
     pw_callback: `${baseUrl}/payment/result?status=success`,
     pw_error_callback: `${baseUrl}/payment/result?status=error`,
+    pw_notification: `${baseUrl}/api/webhook`,
   };
 
   const signature = signParams(params, privateKey);
