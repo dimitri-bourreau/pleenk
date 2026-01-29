@@ -5,6 +5,8 @@ interface PaymentParams {
   pw_description: string;
   pw_transaction_ref: string;
   pw_beneficiary_0: string;
+  pw_callback: string;
+  pw_error_callback: string;
 }
 
 function signParams(params: PaymentParams, privateKey: string): string {
@@ -22,12 +24,15 @@ function signParams(params: PaymentParams, privateKey: string): string {
 export function buildPaymentUrl(): string {
   const privateKey = process.env.PLEENK_PRIVATE_KEY!.replace(/\\n/g, "\n");
   const walletId = process.env.PLEENK_WALLET_ID!;
+  const baseUrl = process.env.BASE_URL!;
 
   const params: PaymentParams = {
     pw_confidentiality_wallet: walletId,
     pw_description: "Product 123",
     pw_transaction_ref: `TXN-${Date.now()}`,
     pw_beneficiary_0: `${walletId}|42`,
+    pw_callback: `${baseUrl}/payment/result?status=success`,
+    pw_error_callback: `${baseUrl}/payment/result?status=error`,
   };
 
   const signature = signParams(params, privateKey);
